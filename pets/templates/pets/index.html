@@ -29,21 +29,18 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div id ='login' style='color: #9d9d9d'>
                   {% if form %}
-                  <form action="{% url 'pets:home' %}" method="post">
-                    {% csrf_token %}
-                    <fieldset>
-                      <legend>Register</legend>
-                      {{form}}
-                      <input type="hidden" name="extra" value="0">
-                      <input type="submit" value="Submit">
-                    </fieldset>
-                  </form>
+                  {% if messages %}
+                  <ul>
+                      {% for message in messages %}
+                      <li{% if message.tags%} {% endif %}>{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
                   <form action="{% url 'pets:home' %}" method="post">
                     {% csrf_token %}
                     <fieldset>
                       <legend>Login</legend>
                       {{form}}
-                      <input type="hidden" name="extra" value="1">
                       <input type="submit" value="Submit">
                     </fieldset>
                   </form>

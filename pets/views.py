@@ -20,7 +20,25 @@ class Home(View):
             return render(request, 'pets/index.html')
         form = UserForm()
         return render(request, 'pets/index.html', {'form':form})
-        
+    def post(self, request):
+        form = UserForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                user = User.objects.create_user(username = data['username'], password = data['password'])
+                if user is not None:
+                    login(request, user)
+                    return redirect(reverse('pets:home'))
+            except:
+                messages.add_message(request, messages.ERROR, 'Username must be unique.')
+        return redirect(reverse('pets:home'))
+
+class Register(View):
+    def get(self, request):
+        if request.user.is_authenticated():
+            return redirect(request,'pets/index.html')
+        form = UserForm()
+        return render(request, 'pets/register.html', {'form':form})
     def post(self, request):
         form = UserForm(request.POST)
         form_type = request.POST['extra']
@@ -41,18 +59,9 @@ class Home(View):
                     return redirect(reverse('pets:home'))
                 else:
                     messages.add_message(request, messages.ERROR, 'Username or password is incorrect')
-        return redirect(reverse('pets:home'))
+        return redirect(reverse('pets:register'))
 
-
-
-def Register(request):
-    return render(request, 'pets/register.html')
-
-def main(request):
-
-    return render(request, 'login/main.html')
-
-def map(request):
+def Map(request):
     buy_url = 'https://data.kingcounty.gov/resource/nu2t-d4hv.json'
     buy_json = requests.get(buy_url).json()
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
@@ -62,26 +71,24 @@ def map(request):
         'store' : buy_json,
         'lost' : lost_json
     }
-    return render(request, 'login/map.html', context)
+    return render(request, 'pets/map.html', context)
 
-def adopt(request):
+def Adopt(request):
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
     lost_json= requests.get(lost_url).json()
-
     context = {
         'adopt' : lost_json
     }
-    return render(request, 'login/adopt.html', context)
-def lost(request):
+    return render(request, 'pets/adopt.html', context)
+
+def Lost(request):
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
     lost_json= requests.get(lost_url).json()
-    post = Pet.objects.filter(status = 'LOST')
     context = {
     'lost' : lost_json,
-    'posts' : post
     }
-    return render(request, 'login/lost.html', context)
-def lost_process(request):
+    return render(request, 'pets/lost.html', context)
+def Lost_process(request):
     if request.method == 'POST':
         Pet.objects.create(
             name = request.POST['name'],
@@ -94,15 +101,13 @@ def lost_process(request):
             listed_by = User.objects.get(id = request.session['id'])
         )
     return redirect(reverse('login:lost'))
-def found(request):
+def Found(request):
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
     lost_json= requests.get(lost_url).json()
-    post = Pet.objects.filter(status = 'FOUND')
     context = {
     'found' : lost_json,
-    'posts' : post
     }
-    return render(request, 'login/found.html', context)
+    return render(request, 'pets/found.html', context)
 def found_process(request):
     if request.method == 'POST':
         Pet.objects.create(
