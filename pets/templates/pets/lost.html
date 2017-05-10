@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lost Pets</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="login/lost.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style media="screen">
+      body{
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'login:index' %}">Pet Lover</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{% url 'login:main' %}">Home</a></li>
+          <li><a href="{%url 'login:lost'%}">Lost a Pet?</a></li>
+          <li><a href="{%url 'login:adopt'%}">Adoption</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'login:index' %}"><b>log out</b></a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+  <br>
+  <br>
+    <div class="container">
+        {%for pet in lost%}
+        {%if pet.record_type == 'LOST'%}
+        <div class="col-md-9 blogShort">
+        <h1>{{pet.animal_name}}</h1>
+        <img src="{{pet.image}}" width="500px" length="500px" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+          <article>
+            <p>{{pet.age}}</p>
+            <p>{{pet.animal_breed}}</P>
+            <p>{{pet.memo|safe}}</p>
+          </article>
+          <a class="btn btn-blog pull-right marginBottom10" href="">Directions</a>
+          <br>
+        </div>
+        {%endif%}
+        {%endfor%}
+    </div>
+  </body>
+</html>

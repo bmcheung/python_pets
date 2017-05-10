@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% load staticfiles %}
+  <title>Pet Lovers Unite</title>
+  <style>
+ .carousel-inner > .item > img,
+ .carousel-inner > .item > a > img {
+     width: 70%;
+     margin: auto;
+ }
+ </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Pet Lover</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div id ='login' style='color: #9d9d9d'>
+                  {% if form %}
+                  <form action="{% url 'pets:home' %}" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                      <legend>Register</legend>
+                      {{form}}
+                      <input type="hidden" name="extra" value="0">
+                      <input type="submit" value="Submit">
+                    </fieldset>
+                  </form>
+                  <form action="{% url 'pets:home' %}" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                      <legend>Login</legend>
+                      {{form}}
+                      <input type="hidden" name="extra" value="1">
+                      <input type="submit" value="Submit">
+                    </fieldset>
+                  </form>
+                  {% else %}
+                  <h1>Welcome, {{request.user.username | title}}</h1>
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                {% load staticfiles %}
+                <img src= "{%static 'pets/image/main6.jpg'%}" alt="" width="560" height="500">
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                {% load staticfiles %}
+                <img src= "{%static 'pets/image/main1.jpg'%}" alt="" width="560" height="500">
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                {% load staticfiles %}
+                <img src= "{%static 'pets/image/main2.jpg'%}" alt="" width="560" height="500">
+            </div>
+             <div class="item">
+                <!-- Set the forth background image using inline CSS below. -->
+                {% load staticfiles %}
+                <img src= "{%static 'pets/image/main7.jpg'%}" alt="" width="560" height="500">
+              </div>
+              <div class="item">
+                <!-- Set the fifth background image using inline CSS below. -->
+                {% load staticfiles %}
+                <img src= "{%static 'pets/image/main5.jpg'%}" alt="" width="560" height="500">
+              </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+
+    <div class="container">
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>What We Do!</h2>
+                <p>Provide information about any local lost pet.</p>
+                <p>We build a local community where you can adopt or purchase your pet.</p>
+                <p>
+                    <a class="btn btn-info btn-lg" href="/register">Register Now!</a>
+                </p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+            <div class="col-sm-4">
+                {% load staticfiles %}
+                <img class="img-circle img-responsive img-center" src= "{%static '/pets/image/location.png'%}" alt=""/>
+                <h2>Location</h2>
+                <p>Local animal shelter and pet store</p>
+            </div>
+            <div class="col-sm-4">
+                {% load staticfiles %}
+                <img class="img-circle img-responsive img-center" src="{%static '/pets/image/lostandfound.png'%}" alt=""/>
+                <h2>Lost and Found</h2>
+                <p>Post/Search for your beloved pet</p>
+            </div>
+            <div class="col-sm-4">
+                {% load staticfiles %}
+                <img class="img-circle img-responsive img-center" src="{% static '/pets/image/adoption.png' %}" alt=""/>
+                <h2>Adoption</h2>
+                <p>Information on adoption and purchase your pet</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Pet Society 2016</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+</body>
+
+</html>
