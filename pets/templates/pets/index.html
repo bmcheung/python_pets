@@ -36,16 +36,20 @@
                       {% endfor %}
                   </ul>
                   {% endif %}
-                  <form action="{% url 'pets:home' %}" method="post">
+                  <form action="{% url 'pets:register' %}" method="post">
                     {% csrf_token %}
                     <fieldset>
                       <legend>Login</legend>
                       {{form}}
+                      <input type="hidden" name="extra" value="1">
                       <input type="submit" value="Submit">
                     </fieldset>
                   </form>
                   {% else %}
                   <h1>Welcome, {{request.user.username | title}}</h1>
+                  <button type="button">
+                    <a href="{% url 'pets:logout'%}">Log Out</a>
+                  </button>
                   {% endif %}
                 </div>
             </div>

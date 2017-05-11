@@ -20,18 +20,11 @@ class Home(View):
             return render(request, 'pets/index.html')
         form = UserForm()
         return render(request, 'pets/index.html', {'form':form})
-    def post(self, request):
-        form = UserForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            try:
-                user = User.objects.create_user(username = data['username'], password = data['password'])
-                if user is not None:
-                    login(request, user)
-                    return redirect(reverse('pets:home'))
-            except:
-                messages.add_message(request, messages.ERROR, 'Username must be unique.')
-        return redirect(reverse('pets:home'))
+
+def Log_out(request):
+    if request.user.is_authenticated():
+        logout(request)
+    return redirect('/')
 
 class Register(View):
     def get(self, request):
