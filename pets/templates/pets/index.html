@@ -23,7 +23,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'pets:home' %}">Pet Lover</a>
+                <a class="navbar-brand" href="{% url 'pets:home' %}">Python Pets</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,24 +38,33 @@
                   {% endif %}
                   <form action="{% url 'pets:register' %}" method="post">
                     {% csrf_token %}
-                    <fieldset>
-                      <legend>Login</legend>
-                      {{form}}
-                      <input type="hidden" name="extra" value="1">
-                      <input type="submit" value="Submit">
-                    </fieldset>
+                      <ul class="nav navbar-nav navbar-right">
+                        <h4>Login</h4>
+                        {% for field in form %}
+                        <li>
+                          {{ field.label_tag }}{{field}}
+                        </li>
+                        {% endfor%}
+                        <li>
+                          <input type="hidden" name="extra" value="1">
+                        </li>
+                        <li>
+                          <input type="submit" value="Submit">
+                        </li>
+                    </ul>
                   </form>
                   {% else %}
-                  <h1>Welcome, {{request.user.username | title}}</h1>
-                  <button type="button">
-                    <a href="{% url 'pets:logout'%}">Log Out</a>
-                  </button>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Welcome, {{request.user.username | title}}</a></li>
+                    <li><a href="{% url 'pets:logout'%}">Log Out</a></li>
+                  </ul>
                   {% endif %}
                 </div>
             </div>
         </div>
         <!-- /.container -->
     </nav>
+
     <!-- Full Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->

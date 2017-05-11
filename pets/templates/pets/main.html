@@ -10,67 +10,60 @@
     <body>
     <div id="wrapper">
           <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Pet Lover</a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="{% url 'pets:logout'%}">Log Out</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">{{request.user.username | title}}</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</div>
-    <div class="container">
-      <div class="wide">
-        	<div class="col-xs-5 line"><hr></div>
-          <img src="{% static '/pets/image/pet.jpg' %}" alt=""/>
-          <div class="col-xs-5 line"><hr></div>
-      </div>
-
-          <div class="row">
-              <div class="col-sm-8">
-                  <h2>What We Do!</h2>
-                  <p>At Pet Lover, we want to create a community for everyone to be able to search and post for their lost beloved pet.
-                   We want to help these beloved pets reunite with their families! If your pet has ventured too far from home, there are many steps
-                  you can take to locate your furry friend like posting to our Lost and Found Pets community. If you have found a lost pet,
-                  its owner may have posted information here as well. Pet Lover is here to help put your cherished
-                  creature back in your arms by spreading the word. It's so important not to lose hope your pet will find its way home again! </p>
-                  <h3>Adoption</h3>
-                  <p>Pet adoption is quickly becoming the preferred way to find a new dog, puppy, cat or kitten. Best of all, there are so many benefits when you adopt a dog or adopt a cat
-                    over buying. For instance, pet adoption will almost always be more affordable than buying a puppy for sale from a breeder or finding
-                    a kitten for sale from a litter. There are more benefits as well. Since pets in rescues and shelters usually come from a home where
-                    the owners ran out of money, got divorced, or had to move, it's common to find that the dogs and cats on our website are already
-                    housetrained, good with kids, or do well with other pets. People are finding out that buying a puppy for sale from a breeder isn't
-                    all it's cracked up to be and the stress of training a puppy is too much these days. Best of all, rescues care for their animals,
-                    and the dogs and cats don't leave the organization without having their shots and being taken to the vet. That means less stress,
-                    and more savings! So what are you waiting for? Go find that perfect pet!</p>
-              </div>
+            <!-- <div class="container"> -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+                <a class="navbar-brand" href="/">Python Pets </a>
+            </div>
+            <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="{% url 'pets:home'%}">Home</a></li>
+              <li class="active"><a href="{% url 'pets:about'%}">About Us</a></li>
+              <li><a href="{% url 'pets:logout'%}">Log Out</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">{{request.user.username | title}}</a></li>
+            </ul>
+            </div><!--/.nav-collapse -->
+            <!-- </div> -->
           </div>
-          <!-- /.row -->
-
-          <hr>
-
-          <!-- Footer -->
-          <footer>
-              <div class="row">
-                  <div class="col-lg-12">
-                      <p>Copyright &copy; Pet Society 2016</p>
-                  </div>
-              </div>
-              <!-- /.row -->
-          </footer>
-
-
+      <div class="container">
+        <div class="wide">
+          	<div class="col-xs-5 line"><hr></div>
+            <img src="{% static '/pets/image/pet.jpg' %}" alt=""/>
+            <div class="col-xs-5 line"><hr></div>
         </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>What We Do!</h2>
+                <p>At Pet Lover, we want to create a community for everyone to be able to search and post for their lost beloved pet.
+                 We want to help these beloved pets reunite with their families! If your pet has ventured too far from home, there are many steps
+                you can take to locate your furry friend like posting to our Lost and Found Pets community. If you have found a lost pet,
+                its owner may have posted information here as well. Pet Lover is here to help put your cherished
+                creature back in your arms by spreading the word. It's so important not to lose hope your pet will find its way home again! </p>
+                <h3>Adoption</h3>
+                <p>Pet adoption is quickly becoming the preferred way to find a new dog, puppy, cat or kitten. Best of all, there are so many benefits when you adopt a dog or adopt a cat
+                  over buying. For instance, pet adoption will almost always be more affordable than buying a puppy for sale from a breeder or finding
+                  a kitten for sale from a litter. There are more benefits as well. Since pets in rescues and shelters usually come from a home where
+                  the owners ran out of money, got divorced, or had to move, it's common to find that the dogs and cats on our website are already
+                  housetrained, good with kids, or do well with other pets. People are finding out that buying a puppy for sale from a breeder isn't
+                  all it's cracked up to be and the stress of training a puppy is too much these days. Best of all, rescues care for their animals,
+                  and the dogs and cats don't leave the organization without having their shots and being taken to the vet. That means less stress,
+                  and more savings! So what are you waiting for? Go find that perfect pet!</p>
+            </div>
+        </div>
+          <!-- /.row -->
+        <hr>
+          <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Pet Society 2016</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+      </div>
     </body>
 </html>
