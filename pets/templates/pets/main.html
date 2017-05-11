@@ -22,10 +22,10 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="{% url 'login:index'%}">Log Out</a></li>
+        <li><a href="{% url 'pets:logout'%}">Log Out</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Nam Tran</a></li>
+        <li><a href="#">{{request.user.username | title}}</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -33,7 +33,7 @@
     <div class="container">
       <div class="wide">
         	<div class="col-xs-5 line"><hr></div>
-          <img src="{% static '/login/image/pet.jpg' %}" alt=""/>
+          <img src="{% static '/pets/image/pet.jpg' %}" alt=""/>
           <div class="col-xs-5 line"><hr></div>
       </div>
 
@@ -55,42 +55,6 @@
                     and the dogs and cats don't leave the organization without having their shots and being taken to the vet. That means less stress,
                     and more savings! So what are you waiting for? Go find that perfect pet!</p>
               </div>
-          </div>
-          <!-- /.row -->
-
-          <hr>
-              <div class=container>
-
-
-              <div class="col-sm-4">
-                <a href="/map">
-                {% load staticfiles %}
-                <img class="img-square img-responsive img-center" src= "{%static 'login/image/location.png'%}" alt=""/></a>
-                <h2>Location</h2>
-                <p>Local animal shelter and pet store</p>
-              </div>
-              <div class="col-sm-4">
-                <a href="{%url 'login:found'%}">
-                  {% load staticfiles %}
-                  <img class="img-square img-responsive img-center" src="{%static '/login/image/found.png'%}" alt=""/>
-                  <h2>Found Pet</h2>
-                  <p>List of found pet</p>
-              </div>
-              <div class="col-sm-4">
-                <a href="{%url 'login:lost'%}">
-                  {% load staticfiles %}
-                  <img class="img-square img-responsive img-center" src="{% static '/login/image/lost.png' %}" alt=""/>
-                  <h2>Lost Pet</h2>
-                  <p>List of lost pet</p>
-              </div>
-              <div class="col-sm-4">
-                <a href="{%url 'login:adopt'%}">
-                  {% load staticfiles %}
-                  <img class="img-square img-responsive img-center" src="{% static '/login/image/adoption.png' %}" alt=""/>
-                  <h2>Adoption</h2>
-                  <p>Information on adoption and purchase your pet</p>
-              </div>
-          </div>
           </div>
           <!-- /.row -->
 

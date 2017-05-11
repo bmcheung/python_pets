@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^adopt$', views.Adopt, name='adopt'),
     url(r'^lost$', views.Lost, name='lost'),
     url(r'^found$', views.Found, name='found'),
+    url(r'^about$', views.About, name='about'),
     url(r'^logout$', views.Log_out, name='logout'),
 ]

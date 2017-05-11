@@ -26,6 +26,9 @@ def Log_out(request):
         logout(request)
     return redirect('/')
 
+def About(request):
+    return render(request, 'pets/main.html')
+
 class Register(View):
     def get(self, request):
         if request.user.is_authenticated():
