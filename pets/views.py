@@ -88,19 +88,7 @@ def Lost(request):
     'lost' : lost_json,
     }
     return render(request, 'pets/lost.html', context)
-def Lost_process(request):
-    if request.method == 'POST':
-        Pet.objects.create(
-            name = request.POST['name'],
-            breed = request.POST['breed'],
-            location_lost = request.POST['location_lost'],
-            date_lost = request.POST['date_lost'],
-            status = 'LOST',
-            notes = request.POST['notes'],
-            image = request.POST['image'],
-            listed_by = User.objects.get(id = request.session['id'])
-        )
-    return redirect(reverse('login:lost'))
+
 def Found(request):
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
     lost_json= requests.get(lost_url).json()
@@ -108,16 +96,3 @@ def Found(request):
     'found' : lost_json,
     }
     return render(request, 'pets/found.html', context)
-def found_process(request):
-    if request.method == 'POST':
-        Pet.objects.create(
-            name = request.POST['name'],
-            breed = request.POST['breed'],
-            location_lost = request.POST['location_lost'],
-            date_lost = request.POST['date_lost'],
-            status = 'FOUND',
-            notes = request.POST['notes'],
-            image = request.POST['image'],
-            listed_by = User.objects.get(id = request.session['id'])
-        )
-    return redirect(reverse('login:found'))
