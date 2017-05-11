@@ -26,7 +26,13 @@
                 <a class="navbar-brand" href="{% url 'pets:home' %}">Python Pets</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {% if form == None %}
+            <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{% url 'pets:home'%}">Home</a></li>
+              <li><a href="{% url 'pets:about'%}">About Us</a></li>
+            </ul>
+            {% endif%}
                 <div id ='login' style='color: #9d9d9d'>
                   {% if form %}
                   {% if messages %}
@@ -55,13 +61,12 @@
                   </form>
                   {% else %}
                   <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Welcome, {{request.user.username | title}}</a></li>
+                    <li><a href="#">{{request.user.username | title}}</a></li>
                     <li><a href="{% url 'pets:logout'%}">Log Out</a></li>
                   </ul>
                   {% endif %}
                 </div>
             </div>
-        </div>
         <!-- /.container -->
     </nav>
 
@@ -112,7 +117,6 @@
     <div class="container">
 
         <hr>
-
         <div class="row">
             <div class="col-sm-8">
                 <h2>What We Do!</h2>
@@ -123,27 +127,35 @@
                     <a class="btn btn-info btn-lg" href="{% url 'pets:register' %}">Register Now!</a>
                 </p>
                 {% endif%}
+                <p>
+                  <a class="btn btn-info btn-lg" href="{% url 'pets:about' %}">Learn More About Us</a>
+                </p>
             </div>
         </div>
         <!-- /.row -->
-
         <hr>
 
             <div class="col-sm-4">
                 {% load staticfiles %}
-                <img class="img-circle img-responsive img-center" src= "{%static '/pets/image/location.png'%}" alt=""/>
+                <a href="{% url 'pets:map' %}">
+                  <img class="img-circle img-responsive img-center" src= "{%static '/pets/image/location.png'%}" alt=""/>
+                </a>
                 <h2>Location</h2>
                 <p>Local animal shelter and pet store</p>
             </div>
             <div class="col-sm-4">
                 {% load staticfiles %}
-                <img class="img-circle img-responsive img-center" src="{%static '/pets/image/lostandfound.png'%}" alt=""/>
+                <a href="{% url 'pets:lost' %}">
+                  <img class="img-circle img-responsive img-center" src="{%static '/pets/image/lostandfound.png'%}" alt=""/>
+                </a>
                 <h2>Lost and Found</h2>
                 <p>Post/Search for your beloved pet</p>
             </div>
             <div class="col-sm-4">
                 {% load staticfiles %}
-                <img class="img-circle img-responsive img-center" src="{% static '/pets/image/adoption.png' %}" alt=""/>
+                <a href="{% url 'pets:adopt' %}">
+                  <img class="img-circle img-responsive img-center" src="{% static '/pets/image/adoption.png' %}" alt=""/>
+                </a>
                 <h2>Adoption</h2>
                 <p>Information on adoption and purchase your pet</p>
             </div>

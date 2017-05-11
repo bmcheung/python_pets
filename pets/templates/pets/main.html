@@ -10,7 +10,7 @@
     <body>
     <div id="wrapper">
           <div class="navbar navbar-inverse navbar-fixed-top">
-            <!-- <div class="container"> -->
+            <div class="container">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 </button>
@@ -20,19 +20,21 @@
             <ul class="nav navbar-nav">
               <li><a href="{% url 'pets:home'%}">Home</a></li>
               <li class="active"><a href="{% url 'pets:about'%}">About Us</a></li>
-              <li><a href="{% url 'pets:logout'%}">Log Out</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#">{{request.user.username | title}}</a></li>
+              <li><a href="{% url 'pets:logout'%}">Log Out</a></li>
             </ul>
             </div><!--/.nav-collapse -->
-            <!-- </div> -->
+            </div>
           </div>
       <div class="container">
         <div class="wide">
-          	<div class="col-xs-5 line"><hr></div>
+          <hr>
+          	<!-- <div class="col-xs-5 line"><hr></div> -->
             <img src="{% static '/pets/image/pet.jpg' %}" alt=""/>
-            <div class="col-xs-5 line"><hr></div>
+            <!-- <div class="col-xs-5 line"><hr></div> -->
+            <hr>
         </div>
         <div class="row">
             <div class="col-sm-8">
