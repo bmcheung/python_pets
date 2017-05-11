@@ -23,27 +23,24 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Pet Lover</a>
+                <a class="navbar-brand" href="{% url 'pets:home' %}">Pet Lover</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div id ='login' style='color: #9d9d9d'>
                   {% if form %}
-                  <form action="{% url 'pets:home' %}" method="post">
-                    {% csrf_token %}
-                    <fieldset>
-                      <legend>Register</legend>
-                      {{form}}
-                      <input type="hidden" name="extra" value="0">
-                      <input type="submit" value="Submit">
-                    </fieldset>
-                  </form>
+                  {% if messages %}
+                  <ul>
+                      {% for message in messages %}
+                      <li{% if message.tags%} {% endif %}>{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
                   <form action="{% url 'pets:home' %}" method="post">
                     {% csrf_token %}
                     <fieldset>
                       <legend>Login</legend>
                       {{form}}
-                      <input type="hidden" name="extra" value="1">
                       <input type="submit" value="Submit">
                     </fieldset>
                   </form>
@@ -111,9 +108,11 @@
                 <h2>What We Do!</h2>
                 <p>Provide information about any local lost pet.</p>
                 <p>We build a local community where you can adopt or purchase your pet.</p>
+                {% if form%}
                 <p>
-                    <a class="btn btn-info btn-lg" href="/register">Register Now!</a>
+                    <a class="btn btn-info btn-lg" href="{% url 'pets:home' %}">Register Now!</a>
                 </p>
+                {% endif%}
             </div>
         </div>
         <!-- /.row -->
