@@ -7,10 +7,11 @@ from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-import requests, json, googlemaps
+import requests, json, googlemaps, petfinder
 
 from .forms import UserForm
 gmaps = googlemaps.Client(key = 'AIzaSyDWRoV2ae3J-BCp0LKXcoFdmpHxIEQnXXE')
+petapi = petfinder.PetFinderClient(api_key='b41019e06145925caa78884c95a3f60e', api_secret='0a2d8f1549b50a91fb47bb707f3663d2')
 
 # Create your views here.
 
