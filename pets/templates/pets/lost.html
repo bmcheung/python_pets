@@ -45,15 +45,20 @@
   <br>
   <br>
     <div class="container">
-        {%for pet in lost%}
-        {%if pet.record_type == 'LOST'%}
+        {% for pet in lost %}
+        {% if pet.record_type == 'LOST'%}
         <div class="col-md-9 blogShort">
         <h1>{{pet.animal_name}}</h1>
         <img src="{{pet.image}}" width="500px" length="500px" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
           <article>
-            <p>{{pet.age}}</p>
-            <p>{{pet.animal_breed}}</P>
-            <p>{{pet.memo|safe}}</p>
+            <p>Species: {{pet.animal_type}}</p>
+            <p>Breed: {{pet.animal_breed}}</P>
+            <p>Date Lost: {{ pet.date | date}}</p>
+            {% if pet.memo%}
+              <p>{{pet.memo|safe}}</p>
+            {% else %}
+              <p>No info available</p>
+              {% endif%}
           </article>
           <a class="btn btn-blog pull-right marginBottom10" href="">Directions</a>
           <br>

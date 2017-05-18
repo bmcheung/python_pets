@@ -49,9 +49,14 @@
     <h1>{{pet.animal_name}}</h1>
     <img src="{{pet.image}}" width="500px" length="500px" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
     <article>
-      <p>{{pet.age}}</p>
-      <p>{{pet.animal_breed}}</P>
-      <p>{{pet.memo|safe}}</p>
+      <p>Species: {{pet.animal_type}}</p>
+      <p>Breed: {{pet.animal_breed}}</P>
+      <p>Date Received: {{ pet.date | date}}</p>
+      {% if pet.memo%}
+        <p>{{pet.memo|safe}}</p>
+      {% else %}
+        <p>No info available</p>
+        {% endif%}
     </article>
       {{pet.location_for_map}}
       <br>

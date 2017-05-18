@@ -48,11 +48,16 @@
         <div class="col-md-9 blogShort">
         <h1>{{pet.animal_name}}</h1>
         <img src="{{pet.image}}" width="500px" length="500px" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-          <article>
-            <p>{{pet.age}}</p>
-            <p>{{pet.animal_breed}}</P>
+        <article>
+          <p>Species: {{pet.animal_type}}</p>
+          <p>Breed: {{pet.animal_breed}}</P>
+          <p>Date Found: {{ pet.date | date}}</p>
+          {% if pet.memo%}
             <p>{{pet.memo|safe}}</p>
-          </article>
+          {% else %}
+            <p>No info available</p>
+            {% endif%}
+        </article>
           <br>
         </div>
         {%endif%}

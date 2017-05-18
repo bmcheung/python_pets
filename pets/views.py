@@ -7,13 +7,16 @@ from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-import requests, json, googlemaps, petfinder
+import requests, json, googlemaps, petfinder, datetime
 
 from .forms import UserForm
 gmaps = googlemaps.Client(key = 'AIzaSyDWRoV2ae3J-BCp0LKXcoFdmpHxIEQnXXE')
 petapi = petfinder.PetFinderClient(api_key='b41019e06145925caa78884c95a3f60e', api_secret='0a2d8f1549b50a91fb47bb707f3663d2')
 
 # Create your views here.
+
+def toCleanedTime(str):
+    return ' '.join(str.split('T'))
 
 class Home(View):
     def get(self, request):
@@ -72,7 +75,9 @@ def Map(request):
 
 def Adopt(request):
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
-    lost_json= requests.get(lost_url).json()
+    lost_json = requests.get(lost_url).json()
+    map(lambda x: x.__setitem__('date',datetime.datetime.strptime(x['date'][:10],'%Y-%m-%d')), lost_json)
+
     context = {
         'adopt' : lost_json
     }
@@ -80,7 +85,9 @@ def Adopt(request):
 
 def Lost(request):
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
-    lost_json= requests.get(lost_url).json()
+    lost_json = requests.get(lost_url).json()
+    map(lambda x: x.__setitem__('date',datetime.datetime.strptime(x['date'][:10],'%Y-%m-%d')), lost_json)
+
     context = {
     'lost' : lost_json,
     }
@@ -89,6 +96,8 @@ def Lost(request):
 def Found(request):
     lost_url = 'https://data.kingcounty.gov/resource/murn-chih.json'
     lost_json= requests.get(lost_url).json()
+    map(lambda x: x.__setitem__('date',datetime.datetime.strptime(x['date'][:10],'%Y-%m-%d')), lost_json)
+
     context = {
     'found' : lost_json,
     }
